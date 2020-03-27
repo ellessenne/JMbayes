@@ -82,12 +82,12 @@ jointModelBayes <- function (lmeObject, survObject, timeVar,
         stop("\n'timeVar' does not correspond to one of the columns in the model.frame of the 'lmeObject'.")
     times <- data[[timeVar]]
     # check if there are any longitudinal measurements after the event times
-    max.timeY <- tapply(times, id, max)
-    if (!all(Time >= max.timeY)) {
-        idnams <- factor(idOrig)
-        stop("\nit seems that there are longitudinal measurements taken after the event times for some subjects ",
-             "(i.e., check subject(s): ", paste(levels(idnams)[(Time < max.timeY)], collapse = ", "), ").")
-    }
+    # max.timeY <- tapply(times, id, max)
+    # if (!all(Time >= max.timeY)) {
+    #     idnams <- factor(idOrig)
+    #     stop("\nit seems that there are longitudinal measurements taken after the event times for some subjects ",
+    #          "(i.e., check subject(s): ", paste(levels(idnams)[(Time < max.timeY)], collapse = ", "), ").")
+    # }
     formYx <- formula(lmeObject)
     mfX <- model.frame(terms(formYx), data = data)
     TermsX <- attr(mfX, "terms")
